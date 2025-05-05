@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Open Japan car</title>
+</head>
+<body>
+
+<p>Technical specifications:</p>
+
+<hr>
+
+<p th:text="'Model car: ' + ${openCar.getModel()}">...</p>
+<p th:text="'Power manual: ' + ${openCar.getPower()} + 'hp'">...</p>
+
+<hr>
+
+<a href="http://localhost:8080/">Back</a>
+
+</body>
+</html>

@@ -1,57 +1,31 @@
 package ru.japan.car.Controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
+import ru.japan.car.dao.CarsDAO;
 
 @Controller()
 public class CarControllers {
 
-    @GetMapping()
-    public String mainCar() {
-        return "main";
+    private final CarsDAO carsDao;
+
+    @Autowired
+    public CarControllers(CarsDAO carsDAO) {
+        this.carsDao = carsDAO;
     }
 
-    @GetMapping("/chaser")
-    public String chaser
-            (@RequestParam(value = "equipment", required = false) String equipment,
-             @RequestParam(value = "release", required = false) String release,
-             @RequestParam(value = "engine", required = false) String engine,
-             @RequestParam(value = "volume", required = false) String volume,
-             @RequestParam(value = "power", required = false) String power,
-             @RequestParam(value = "expenditure", required = false) String expenditure,
-             Model model) {
-
-        model.addAttribute("equipment", equipment);
-        model.addAttribute("release", release);
-        model.addAttribute("engine", engine);
-        model.addAttribute("volume", volume);
-        model.addAttribute("power", power);
-        model.addAttribute("expenditure", expenditure);
-
-
-        return "chaser";
+    @GetMapping
+    public String mainPageCar(Model model) {
+        model.addAttribute("listCar", carsDao.listCar());
+        return "mainPage";
     }
 
-    @GetMapping("/mark")
-    public String mark
-            (@RequestParam(value = "equipment", required = false) String equipment,
-             @RequestParam(value = "release", required = false) String release,
-             @RequestParam(value = "engine", required = false) String engine,
-             @RequestParam(value = "volume", required = false) String volume,
-             @RequestParam(value = "power", required = false) String power,
-             @RequestParam(value = "expenditure", required = false) String expenditure,
-             Model model) {
-
-        model.addAttribute("equipment", equipment);
-        model.addAttribute("release", release);
-        model.addAttribute("engine", engine);
-        model.addAttribute("volume", volume);
-        model.addAttribute("power", power);
-        model.addAttribute("expenditure", expenditure);
-
-
-        return "mark";
+    @GetMapping("/{id}")
+    public String openPageCars(@PathVariable("id") int id, Model model) {
+        model.addAttribute("openCar", carsDao.openCar(id));
+        return "openCars";
     }
 }
