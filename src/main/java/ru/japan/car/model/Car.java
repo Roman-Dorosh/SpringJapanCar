@@ -3,12 +3,17 @@ package ru.japan.car.model;
 public class Car {
     private int id;
     private String model;
-    private int power;
+    private String equipment;
+    private int yearRelease;
 
-    public Car(int id, String model, int power) {
+    public Car() {
+    }
+
+    public Car(int id, int yearRelease, String equipment, String model) {
         this.id = id;
+        this.yearRelease = yearRelease;
+        this.equipment = equipment;
         this.model = model;
-        this.power = power;
     }
 
     public int getId() {
@@ -27,11 +32,19 @@ public class Car {
         this.model = model;
     }
 
-    public int getPower() {
-        return power;
+    public String getEquipment() {
+        return equipment;
     }
 
-    public void setPower(int power) {
-        this.power = power;
+    public void setEquipment(String equipment) {
+        this.equipment = equipment;
+    }
+
+    public int getYearRelease() {
+        return yearRelease;
+    }
+
+    public void setYearRelease(int yearRelease) {
+        this.yearRelease = yearRelease;
     }
 }

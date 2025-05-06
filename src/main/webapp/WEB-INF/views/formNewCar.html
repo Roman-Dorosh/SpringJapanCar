@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Car</title>
+</head>
+<body>
+
+<p>New Car:</p>
+
+<hr>
+
+<form th:method="POST" th:action="@{http://localhost:8080}" th:object="${newCar}">
+
+    <label for="modelCar">Model Car</label>
+    <input type="text" th:field="*{model}" id="modelCar">
+
+    <br>
+
+    <label for="equipment">Equipment</label>
+    <input type="text" th:field="*{equipment}" id="equipment">
+
+    <br>
+
+    <label for="yearRelease">Year Release</label>
+    <input type="text" th:field="*{yearRelease}" id="yearRelease">
+
+    <hr>
+
+    <br>
+
+    <input type="submit" value="Add Car">
+
+</form>
+
+</body>
+</html>

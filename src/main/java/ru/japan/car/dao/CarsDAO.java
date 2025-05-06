@@ -14,11 +14,11 @@ public class CarsDAO {
     {
         car = new ArrayList<>();
 
-        car.add(new Car(++ID, "Toyota Chaser", 600));
-        car.add(new Car(++ID, "Toyota Mark II", 200));
-        car.add(new Car(++ID, "Nissan Silvia", 440));
-        car.add(new Car(++ID, "Nissan Skyline", 280));
-        car.add(new Car(++ID, "Nissan 350Z", 320));
+        car.add(new Car(++ID, 1999, "Tourer-V", "Toyota Chaser"));
+        car.add(new Car(++ID, 1996, "Tourer-S", "Toyota Mark II"));
+        car.add(new Car(++ID, 2002, "Spec-R-V-package", "Nissan Silvia"));
+        car.add(new Car(++ID, 2001, "25GT turbo", "Nissan Skyline"));
+        car.add(new Car(++ID, 2009, "MT Premium Pack", "Nissan 350Z"));
 
     }
 
@@ -26,12 +26,17 @@ public class CarsDAO {
         return car;
     }
 
-    public Car openCar(int id) {
+    public Car findSpecificCar(int id) {
         for (int i = 0; i < car.size(); i++) {
             if (car.get(i).getId() == id) {
                 return car.get(i);
             }
         }
         return null;
+    }
+
+    public void addNewCar(Car newCar){
+        newCar.setId(++ID);
+        car.add(newCar);
     }
 }
