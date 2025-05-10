@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>New Car</title>
+    <title>Edit Car</title>
 </head>
 <body>
 
-<p>New Car:</p>
+<p>Update Car:</p>
 
 <hr>
 
-<form th:method="POST" th:action="@{http://localhost:8080}" th:object="${car}">
+<form th:method="PATCH" th:action="@{/{id}/editCar(id=${formEditCar.getId()})}" th:object="${formEditCar}">
 
     <label for="modelCar">Model Car</label>
     <input type="text" th:field="*{model}" id="modelCar">
@@ -25,13 +25,13 @@
     <label for="yearRelease">Year Release</label>
     <input type="text" th:field="*{yearRelease}" id="yearRelease">
 
-    <input type="submit" value="Add Car">
+    <input type="submit" value="Update car">
 
 </form>
 
 <hr>
 
-<a href="http://localhost:8080/">Back</a>
+<a th:href="@{http://localhost:8080/{id}(id=${formEditCar.getId()})}">Back</a>
 
 </body>
 </html>

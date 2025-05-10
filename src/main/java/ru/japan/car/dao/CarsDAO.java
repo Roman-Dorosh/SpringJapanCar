@@ -8,8 +8,8 @@ import java.util.List;
 
 @Component
 public class CarsDAO {
-    private List<Car> car;
     private static int ID;
+    private List<Car> car;
 
     {
         car = new ArrayList<>();
@@ -35,8 +35,24 @@ public class CarsDAO {
         return null;
     }
 
-    public void addNewCar(Car newCar){
+    public void addNewCar(Car newCar) {
         newCar.setId(++ID);
         car.add(newCar);
+    }
+
+    public void updateCar(int id, Car carUpdate) {
+        Car car = findSpecificCar(id);
+
+        car.setYearRelease(carUpdate.getYearRelease());
+        car.setEquipment(carUpdate.getEquipment());
+        car.setModel(car.getModel());
+    }
+
+    public void deleteCar(int id) {
+        for (int i = 0; i < car.size(); i++) {
+            if (car.get(i).getId() == id) {
+                car.remove(car.get(i));
+            }
+        }
     }
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Car</title>
+</head>
+<body>
+
+<p>You have added a new car:</p>
+
+<hr>
+
+<p th:text="'Model: ' + ${pageNewCar.getModel()}">...</p>
+<p th:text="'Equipment: ' + ${pageNewCar.getEquipment()}">...</p>
+<p th:text="'Year Release: ' + ${pageNewCar.getYearRelease()}">...</p>
+
+<hr>
+
+<a href="http://localhost:8080/">Main page</a>
+
+</body>
+</html>

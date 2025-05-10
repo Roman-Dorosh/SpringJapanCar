@@ -34,26 +34,31 @@ public class CarControllers {
     //Отображение формы для создания объекта.
     @GetMapping("/newCar")
     public String openPageNewCar(Model model) {
-        model.addAttribute("newCar", new Car());
+        model.addAttribute("car", new Car());
         return "formNewCar";
     }
 
-    //@GetMapping("/newCar")
-    //public String openPageNewCar(@ModelAttribute("newCar") Car car) {
-    //    return "formNewCar";
-    //}
-    //
-    //@PostMapping
-    //public String openPageAddCar(@ModelAttribute("addNewCar") Car car) {
-    //    carsDao.addNewCar(car);
-    //    return "redirect:http://localhost:8080/";
-    // }
+
+    /*
+    @GetMapping("/newCar")
+    public String openPageNewCar(@ModelAttribute("newCar") Car car) {
+        return "formNewCar";
+    }
+
+    @PostMapping
+    public String openPageAddCar(@ModelAttribute("addNewCar") Car car) {
+        carsDao.addNewCar(car);
+        return "redirect:http://localhost:8080/";
+    }
+    */
+
 
     //Добавление объекта в список.
     @PostMapping
     public String openPageAddCar(@RequestParam("model") String model,
                                  @RequestParam("equipment") String equipment,
-                                 @RequestParam("yearRelease") int yearRelease) {
+                                 @RequestParam("yearRelease") int yearRelease,
+                                 Model thModel) {
 
         Car car = new Car();
 
@@ -63,6 +68,40 @@ public class CarControllers {
 
         carsDao.addNewCar(car);
 
+        thModel.addAttribute("pageNewCar", car);
+
+        return "pageNewCar";
+    }
+
+    //Отображение формы для обновления объекта.
+    @GetMapping("/{id}/editCar")
+    public String openPageEditCar(@PathVariable("id") int id, Model model) {
+        model.addAttribute("formEditCar", carsDao.findSpecificCar(id));
+        return "formEditCar";
+    }
+
+    //Обновление объекта.
+    @PatchMapping("/{id}/editCar")
+    public String openPageUpdateCar(@PathVariable("id") int id,
+                                    @RequestParam("model") String model,
+                                    @RequestParam("equipment") String equipment,
+                                    @RequestParam("yearRelease") int yearRelease) {
+
+        Car car = new Car();
+
+        car.setModel(model);
+        car.setEquipment(equipment);
+        car.setYearRelease(yearRelease);
+
+        carsDao.updateCar(id, car);
+
+        return "redirect:/{id}";
+    }
+
+    // Удаление объекта.
+    @DeleteMapping("/{id}/delete")
+    public String deleteCar(@PathVariable("id") int id) {
+        carsDao.deleteCar(id);
         return "redirect:http://localhost:8080/";
     }
 }
