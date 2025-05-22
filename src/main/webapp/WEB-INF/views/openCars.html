@@ -19,13 +19,12 @@
 <a th:href="@{/{id}/editCar(id=${openCar.getId()})}">Update Car</a>
 
 <br>
-<br>
 
 <a href="http://localhost:8080/">Back</a>
 
 <hr>
 
-<form th:method="DELETE" th:action="@{/{id}/delete(id=${openCar.getId()})}" th:object="${openCar}">
+<form th:method="DELETE" th:action="@{/{id}(id=${openCar.getId()})}" th:object="${openCar}">
     <input type="submit" value="Delete car">
 </form>
 

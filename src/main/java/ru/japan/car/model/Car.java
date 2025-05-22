@@ -9,11 +9,11 @@ public class Car {
     public Car() {
     }
 
-    public Car(int id, int yearRelease, String equipment, String model) {
+    public Car(int id, String model, String equipment, int yearRelease) {
         this.id = id;
-        this.yearRelease = yearRelease;
-        this.equipment = equipment;
         this.model = model;
+        this.equipment = equipment;
+        this.yearRelease = yearRelease;
     }
 
     public int getId() {

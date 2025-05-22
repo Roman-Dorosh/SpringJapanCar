@@ -38,21 +38,6 @@ public class CarControllers {
         return "formNewCar";
     }
 
-
-    /*
-    @GetMapping("/newCar")
-    public String openPageNewCar(@ModelAttribute("newCar") Car car) {
-        return "formNewCar";
-    }
-
-    @PostMapping
-    public String openPageAddCar(@ModelAttribute("addNewCar") Car car) {
-        carsDao.addNewCar(car);
-        return "redirect:http://localhost:8080/";
-    }
-    */
-
-
     //Добавление объекта в список.
     @PostMapping
     public String openPageAddCar(@RequestParam("model") String model,
@@ -99,7 +84,7 @@ public class CarControllers {
     }
 
     // Удаление объекта.
-    @DeleteMapping("/{id}/delete")
+    @DeleteMapping("/{id}")
     public String deleteCar(@PathVariable("id") int id) {
         carsDao.deleteCar(id);
         return "redirect:http://localhost:8080/";
